@@ -13,22 +13,22 @@ public class ShoppingCartPage {
 
     @Step("Открываем корзину")
     public void openShoppingCart() {
-        page.locator("//*[@id=\"app\"]/header/div[2]/div[2]/div[2]/base-header-button[3]/a/div").click();
+        page.locator("(//div[@class=\"h-drop__head\"])[5]").click();
     }
 
     @Step("Добавляем товар в корзину")
     public void addProductToCart() {
-        page.locator("//*[@id=\"app\"]/main/div/div[1]/div[3]/div[3]/div[1]/div[1]/div[3]/div/div[4]/div[1]/add-to-cart-button/a").click();
+        page.locator("(//a[@data-id=\"add-product-to-cart\"])[1]").click();
     }
 
     @Step("Удаляем товары из корзины")
     public void deleteProductFromCart() {
-        page.locator("//*[@id=\"app\"]/main/div/checkout-page/div/div[1]/div[1]/div[1]/a").click();
+        page.locator("//a[@class=\"remove-all\"]").click();
     }
 
     @Step("Получаем количество товаров в корзине")
     public int getCartItemCount() {
-        String countText = page.locator("//*[@id=\"app\"]/main/div/checkout-page/div/div[1]/h1/span").textContent();
+        String countText = page.locator("//span[@class=\"checkout-count\"]").textContent();
         if (countText.equals("null")) {
             return 0;
         }
@@ -37,7 +37,7 @@ public class ShoppingCartPage {
 
     @Step("Получаем итоговую сумму заказа")
     public String getTotalPrice() {
-        Locator totalBlock = page.locator("//*[@id=\"app\"]/main/div/checkout-page/div/div[2]/div[2]/div[2]/div[8]/div[2]");
+        Locator totalBlock = page.locator("//div[@class=\"payment-info__row payment-info__total\"]");
         String priceText = totalBlock.locator("div").nth(1).textContent();
         return priceText.trim();
     }
@@ -46,6 +46,6 @@ public class ShoppingCartPage {
     public boolean isCartEmptyMessageVisible() {
         page.waitForSelector("#app > main > div > checkout-page > div > h2",
                 new Page.WaitForSelectorOptions().setTimeout(5000));
-        return page.locator("//*[@id=\"app\"]/main/div/checkout-page/div/h2").isVisible();
+        return page.locator("//h2[text()=\"В корзине еще нет товаров\"]").isVisible();
     }
 }

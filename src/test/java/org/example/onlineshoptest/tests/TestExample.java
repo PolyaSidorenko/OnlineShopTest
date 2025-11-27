@@ -1,62 +1,22 @@
 package org.example.onlineshoptest.tests;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
-import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.example.onlineshoptest.baseTests.BaseUITest;
 import org.example.onlineshoptest.pages.HomePage;
 import org.example.onlineshoptest.pages.SearchPage;
 import org.example.onlineshoptest.pages.ShoppingCartPage;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.ByteArrayInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("UI Tests")
-public class TestExample {
-    private static final Logger log = LoggerFactory.getLogger(TestExample.class);
-    static Playwright playwright;
-    static Browser browser;
-
-    BrowserContext context;
-    Page page;
-
-    @BeforeAll
-    static void launchBrowser() {
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch();
-    }
-
-    @AfterAll
-    static void closeBrowser() {
-        playwright.close();
-    }
-
-    @BeforeEach
-    void createContextAndPage() {
-        context = browser.newContext();
-        page = context.newPage();
-    }
-
-    @AfterEach
-    void closeContext() {
-        context.close();
-    }
+public class TestExample extends BaseUITest {
 
     @Test
     @Story("Поиск товара")
@@ -86,7 +46,7 @@ public class TestExample {
         homePage.open();
         homePage.selectPageCategory();
 
-        assertEquals("https://5element.by/catalog/115-holodilniki-i-morozilniki", searchPage.getUrl() );
+        assertEquals("https://5element.by/catalog/115-holodilniki-i-morozilniki", searchPage.getUrl());
 
         attachScreenshot("Категория 'холодильники'");
     }
@@ -114,10 +74,5 @@ public class TestExample {
         assertTrue(shoppingCartPage.isCartEmptyMessageVisible());
 
         attachScreenshot("Удаление из корзины");
-    }
-
-    public void attachScreenshot(String name) {
-        byte[] screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
-        Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
     }
 }

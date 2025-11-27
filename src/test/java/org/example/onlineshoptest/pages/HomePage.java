@@ -18,7 +18,7 @@ public class HomePage {
 
     @Step("Выполняем поиск по слову: {query}")
     public void search(String text) {
-        Locator searchInput = page.locator("//*[@id=\"app\"]/header/div[2]/div[2]/div[1]/form/input");
+        Locator searchInput = page.locator("//input[@class=\"inp inp--lg digi-instant-search jc-ignore\"]");
         searchInput.click();
         searchInput.fill(text);
         searchInput.press("Enter");
@@ -26,8 +26,8 @@ public class HomePage {
 
     @Step("Переходим к категории 'Холодильники'")
     public void selectPageCategory() {
-        page.locator("//*[@id=\"app\"]/header/div[2]/div[2]/div[1]/a").click();
-        page.locator("//*[@id=\"app\"]/catalog-menu/div[2]/div/div/div[1]/ul/li[5]/a").click();
-        page.locator("//*[@id=\"app\"]/main/div/div/div/a[6]").click();
+        page.locator("//a[@data-id=\"catalog-menu-closed\"]").click();
+        page.locator("//a[@data-id=\"21-tehnika-dlya-kuhni\"]").click();
+        page.locator("(//a[@class=\"c-index__item\"])[6]").click();
     }
 }

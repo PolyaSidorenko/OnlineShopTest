@@ -9,7 +9,7 @@ public class SearchPage {
         this.page = page;
     }
 
-    public String getUrl(){
+    public String getUrl() {
         return page.url();
     }
 }
