@@ -4,13 +4,10 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
-import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
-import java.io.ByteArrayInputStream;
 
 
 public abstract class BaseUITest {
@@ -42,8 +39,4 @@ public abstract class BaseUITest {
         context.close();
     }
 
-    protected void attachScreenshot(String name) {
-        byte[] screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
-        Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
-    }
 }

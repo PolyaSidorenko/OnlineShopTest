@@ -6,16 +6,19 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.example.onlineshoptest.baseTests.BaseUITest;
+import org.example.onlineshoptest.baseTests.ScreenshotExtension;
 import org.example.onlineshoptest.pages.HomePage;
 import org.example.onlineshoptest.pages.SearchPage;
 import org.example.onlineshoptest.pages.ShoppingCartPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("UI Tests")
+@ExtendWith(ScreenshotExtension.class)
 public class TestExample extends BaseUITest {
 
     @Test
@@ -30,8 +33,6 @@ public class TestExample extends BaseUITest {
         homePage.search("Холодильник");
 
         assertTrue(page.locator("h1").textContent().contains("Холодильник"));
-
-        attachScreenshot("Результаты поиска 'Холодильник'");
     }
 
     @Test
@@ -47,8 +48,6 @@ public class TestExample extends BaseUITest {
         homePage.selectPageCategory();
 
         assertEquals("https://5element.by/catalog/115-holodilniki-i-morozilniki", searchPage.getUrl());
-
-        attachScreenshot("Категория 'холодильники'");
     }
 
     @Test
@@ -67,12 +66,8 @@ public class TestExample extends BaseUITest {
 
         assertEquals(1, shoppingCartPage.getCartItemCount());
 
-        attachScreenshot("Добавление в корзину");
-
         shoppingCartPage.deleteProductFromCart();
         shoppingCartPage.openShoppingCart();
         assertTrue(shoppingCartPage.isCartEmptyMessageVisible());
-
-        attachScreenshot("Удаление из корзины");
     }
 }
