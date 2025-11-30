@@ -38,5 +38,4 @@ public abstract class BaseUITest {
     void closeContext() {
         context.close();
     }
-
 }
