@@ -25,6 +25,6 @@ jobs:
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           Unresolved action/workflow reference: "peaceiris/actions-gh-pages@v3"
           force_orphan: true
