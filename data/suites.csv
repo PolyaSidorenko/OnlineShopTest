@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Dec 02 08:12:14 UTC 2025","Tue Dec 02 08:12:20 UTC 2025","6439","","org.example.onlineshoptest.tests.TestExample","","org.example.onlineshoptest.tests.TestExample","shouldSearch","Поиск холодильников","Проверяем поиск по ключевому слову 'Холодильник' на сайте 5element.by"
+"passed","Tue Dec 02 08:12:33 UTC 2025","Tue Dec 02 08:12:38 UTC 2025","5577","","org.example.onlineshoptest.tests.TestExample","","org.example.onlineshoptest.tests.TestExample","selectCategory","Переход к категории","Проверяем переход в категорию 'Холодильники и морозильники'"
+"failed","Tue Dec 02 08:12:20 UTC 2025","Tue Dec 02 08:12:33 UTC 2025","12228","","org.example.onlineshoptest.tests.TestExample","","org.example.onlineshoptest.tests.TestExample","cartOperations","Добавление и удаление товара",""
