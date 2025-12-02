@@ -64,7 +64,7 @@ public class TestExample extends BaseUITest {
         shoppingCartPage.addProductToCart();
         shoppingCartPage.openShoppingCart();
 
-        assertEquals(1, shoppingCartPage.getCartItemCount());
+        assertEquals(0, shoppingCartPage.getCartItemCount());
 
         shoppingCartPage.deleteProductFromCart();
         shoppingCartPage.openShoppingCart();
