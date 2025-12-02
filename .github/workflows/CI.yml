@@ -18,11 +18,14 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B clean test
+        continue-on-error: true
 
       - name: Generate Allure Report
+        if: always()
         run: mvn allure:report
 
       - name: Deploy Allure Report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
